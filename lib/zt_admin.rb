@@ -63,10 +63,11 @@ module ZtAdmin
     require 'zt_admin/destroy'         # Destroy files and directories
     require 'zt_admin/remove_resource' # Remove resource from config/routes.rb file
   end
+  
   # Test sample
   class Sample
     def say_hello
-      puts 'Hello from ZtAdmin! Just first test'
+      puts 'Hello from ZtAdmin! Just first test for ruby 3.1.1 / Rails 7.0.2.3'
     end
   end
 end
