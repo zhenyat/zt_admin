@@ -1,0 +1,35 @@
+<% entity = object.class.name.constantize %>
+<% if entity.included_modules.include?(ImagesHandleable) %>
+  <% if entity.reflect_on_attachment(:cover_image).present?  %>
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <td>
+            <%= t 'images.cover_image' %>
+          </td>
+          <td>
+            <% if object.cover_image.attached? %>
+              <%= image_tag object.cover_image.variant(resize_to_limit: [50, 50]) %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+  <% if object.images.attached? %>
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <td>
+            <%= t 'images.gallery' %>
+          </td>
+          <% object.images.each do |image| %>
+            <td>
+              <%= image_tag image.variant(resize_to_limit: [50, 50]) %>
+            </td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>

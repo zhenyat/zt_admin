@@ -1,0 +1,146 @@
+en:
+  activerecord:
+    models:
+      user:
+        one:                    User
+        other:                  Users
+      account:
+        one:                    Account
+        other:                  Accounts
+      bank:
+        one:                    Bank
+        other:                  Banks
+      category:
+        one:                    Category
+        other:                  Categories
+      company:
+        one:                    Campany
+        other:                  Companies
+      partner:
+        one:                    Partner
+        other:                  Partners
+      partner_bank:
+        one:                    Partner Bank
+        other:                  Partner Banks
+      product:
+        one:                    Product
+        other:                  Products
+      sample:
+        one:                    Sample
+        other:                  Samples
+
+    attributes:
+      user:
+        role:                   Role
+        last_name:              Last Name
+        first_name:              First Name
+        email:                  Email
+        password:               Password
+        password_confirmation:   Password confirmation
+        status:                 Status
+      account:
+        email:                  Email
+        name:                   Name
+        nickname:               Nickname
+        password:               Password
+        password_confirmation:  Password confirmation
+      bank:
+        name:                   Name
+        title:                  Title
+        brief_title:            Brief Title
+        inn:                    INN (Taxpayer Identification Number)
+        url:                    URL
+        phone:                  Phone
+        email:                  Email
+        legal_address:          Legal Address
+        postal_address:         Postal Address for correspondence
+        bic:                    RCBIC (Russian Central Bank Identification Code)
+        corr_acc:               Correspondent Account
+        corr_acc_with:          Central Bank Division
+        kpp:                    KPP (Tax Registration Reason Code)
+        ogrn:                   OGRN (Primary State Registration Number)
+        okpo:                   OKPO (Russian Business and Organization Classification)
+        okato:                  OKATO (Russian Classification on Objects of Administrative Division)
+        comment:                Comment
+      category:
+        name:                   Name
+        title:                  Title
+        ancestry:               Ancestry
+        abstract:               Abstract
+        position:               Position
+        visibility:             Visibility
+        status:                 Status
+        url:                    URL
+        seo_title:              SEO Title
+        seo_description:        SEO Description
+        seo_keywords:           SEO Keywords
+      company:
+        name:                   Name
+        title:                  Title
+        inn:                    INN (Taxpayer Identification Number)
+        ogrnip:                 OGRNIP (Primary State Registration Number of Individual Entrepreneur)
+        certificate_number:      Certificate Number
+        certificate_date:        Certificate Date
+        email:                  Email
+        phone:                  Phone
+        legal_address:          Legal address
+        pickup_address:         Pickup address
+        url:                    URL
+        comment:                Comment
+        seo_title:              SEO Title
+        seo_description:        SEO Description
+        seo_keywords:           SEO Keywords
+      partner:
+        name:                   Name
+        code:                   Code
+        kind:                   Legal Entity Form
+        role:                   Partner Role
+        title:                  Title
+        inn:                    INN (Taxpayer Identification Number)
+        url:                    URL
+        email:                  Email
+        kpp:                    KPP (Tax Registration Reason Code)
+        ogrn:                   OGRN (Primary State Registration Number)
+        ogrnip:                 OGRNIP (Primary State Registration Number of Individual Entrepreneur)
+        okpo:                   OKPO (Russian Business and Organization Classification)
+        okato:                  OKATO (Russian Classification on Objects of Administrative Division)
+        certificate_number:      Certificate Number
+        certificate_date:        Certificate Date
+        comment:                Comment
+        kind_list:
+          zao:                  ZAO (CJSC - Closed Joint Stock Company)
+          individual:           Individual Entrepreneur
+          oao:                  OAO (OJSC - Open Joint Stock Company)
+          ooo:                  OOO (LLC - Lim­it­ed Lia­bil­i­ty Company)
+          pao:                  PAO (PJSC - Public Joint Stock Company)
+        role_list:
+          supplier:             Supplier
+          market_place:         Market Place
+          service_provider:     Service Provider
+          subcontractor:        Subcontractor 
+      partner_bank:
+        partner:                Partner
+        bank:                   Bank
+        account:                Account
+      product:
+        category:               Category
+        name:                   Name
+        title:                  Title
+        sku:                    sku
+        qty:                    Quantity
+        hot:                    Hot
+        price:                  Price
+        hot_price:              Hot Price
+        abstract:               Abstract
+        position:               Position
+        status:                 Status
+        url:                    URL
+        seo_title:              SEO Title
+        seo_description:        SEO Description
+        seo_keywords:           SEO Keywords
+      sample:
+        name:                   Name
+        title:                  Title
+        price:                  Price
+        quantity:               Quantity
+        status:                 Status

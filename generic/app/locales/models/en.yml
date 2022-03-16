@@ -1,0 +1,67 @@
+en:
+  activerecord:
+    models:
+      user:
+        one:                    User
+        other:                  Users
+      account:
+        one:                    Account
+        other:                  Accounts
+      category:
+        one:                    Category
+        other:                  categories
+      product:
+        one:                    Product
+        other:                  Products
+      sample:
+        one:                    Sample
+        other:                  Samples
+
+    attributes:
+      user:
+        role:                   Role
+        last_name:              Last Name
+        first_name:             First Name
+        email:                  Email
+        password:               Password
+        password_confirmation:  Password confirmation
+        status:                 Status
+      account:
+        email:                  Email
+        name:                   Name
+        nickname:               Nickname
+        password:               Password
+        password_confirmation:  Password confirmation
+      category:
+        name:                   Name
+        title:                  Title
+        ancestry:               Ancestry
+        abstract:               Abstract
+        position:               Position
+        status:                 Status
+        url:                    URL
+        seo_title:              SEO Title
+        seo_description:        SEO Description
+        seo_keywords:           SEO Keywords
+      product:
+        category:               Category
+        name:                   Name
+        title:                  Title
+        sku:                    sku
+        qty:                    Quantity
+        hot:                    Hot
+        price:                  Price
+        hot_price:              Hot Price
+        abstract:               Abstract
+        position:               Position
+        status:                 Status
+        url:                    URL
+        seo_title:              SEO Title
+        seo_description:        SEO Description
+        seo_keywords:           SEO Keywords
+      sample:
+        name:                   Name
+        title:                  Title
+        price:                  Price
+        quantity:               Quantity
+        status:                 Status

@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>
+    <%= t Sample.model_name.human %>
+  </h1>
+  <table class="table table-striped">
+    <tbody>
+      <% @sample.attributes.each do |key, value| %>
+        <% if key == 'id' || key.include?('digest') || key == 'created_at' || key == 'updated_at' %>
+          <!--/skip these attributes
+          -->
+        <% else %>
+          <tr>
+            <% if key == 'status' %>
+              <td>
+                <%= t 'status.status' %>
+              </td>
+              <td>
+                <%= status_mark @sample.status %>
+              </td>
+            <% else %>
+              <td>
+                <%= t "activerecord.attributes.sample.#{key}" %>
+              </td>
+              <td>
+                <%= value %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+      <%= render 'admin/shared/show_images', object: @sample %>
+    </tbody>
+  </table>
+  <%= render 'admin/shared/show_rich_text_content', object: @sample %>
+  <%= render 'admin/shared/show_actions', object: @sample %>
+</div>

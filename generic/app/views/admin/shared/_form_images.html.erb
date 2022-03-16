@@ -1,0 +1,53 @@
+<% entity = object.class.name.constantize %>
+<% if entity.included_modules.include?(ImagesHandleable) %>
+  <% if entity.reflect_on_attachment(:cover_image).present? %>
+    <hr/>
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.label t 'images.cover_image' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.file_field :cover_image %>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <% if object.cover_image.attached? %>
+        <div class="col-md-2">
+          <%= image_tag object.cover_image.variant(resize_to_fit: [100, 100]) %>
+        </div>
+        <div class="col-md-2">
+          <%= f.check_box :remove_cover_image %>
+          <i class="fas fa-trash"></i>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <% if entity.reflect_on_attachment(:images).present? %>
+    <hr/>
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.label t 'images.gallery' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.file_field :images, multiple: true %>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <% if object.images.attached? %>
+        <% object.images.each do |image| %>
+          <div class="col-md-3 form-image-cell">
+            <%= image_tag image.variant(resize_to_fit: [100, 100]) %>
+            <%= check_box_tag 'image_to_remove_ids[]', image.id %>
+            <i class="fas fa-trash"></i>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

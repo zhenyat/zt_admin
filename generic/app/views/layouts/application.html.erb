@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dummy</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <!-- link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" -->
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+    <%= favicon_link_tag asset_path('favicon.ico'), rel: 'apple-touch-icon' %>
+    <%= render 'shared/shim' %>
+  </head>
+
+  <body class="bg-success p-2 text-dark bg-opacity-10">
+    <%= render 'shared/top_navigation' %>
+    <%= yield %>
+  </body>
+  <%= render 'shared/footer' %>
+</html>

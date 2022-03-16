@@ -1,0 +1,68 @@
+ru:
+  activerecord:
+    models:
+      user:
+        one:                    Пользователь
+        other:                  Пользователи
+      account:
+        one:                    Аккаунт
+        other:                  Аккаунты
+      category:
+        one:                    Категория
+        other:                  Категории
+      product:
+        one:                    Товар
+        other:                  Товары
+      sample:
+        one:                    Образец
+        other:                  Образцы
+
+    attributes:
+      user:
+        role:                   Роль
+        last_name:              Фамилия
+        first_name:             Имя
+        email:                  Э/почта
+        password:               Пароль
+        password_confirmation:  Подтверждение пароля
+        status:                 Status
+      account:
+        email:                  Э/почта
+        name:                   Имя
+        nickname:               Псевдоним
+        password:               Пароль
+        password_confirmation:  Подтверждение пароля
+      category:
+        name:                   Имя в БД
+        title:                  Наименование
+        ancestry:               Предок
+        abstract:               Краткое описание
+        position:               Краткое описание
+        status:                 Краткое описание
+        url:                    URL
+        seo_title:              SEO Заголовок
+        seo_description:        SEO Описание
+        seo_keywords:           SEO Ключевые слова
+      product:
+        category:               Категория
+        name:                   Имя в БД
+        title:                  Наименование
+        sku:                    Артикул
+        qty:                    Кол-во
+        hot:                    Акция
+        price:                  Цена
+        hot_price:              Цена по акции
+        abstract:               Краткое описание
+        position:               Положение
+        status:                 Статус
+        url:                    URL
+        seo_title:              SEO Заголовок
+        seo_description:        SEO Описание
+        seo_keywords:           SEO Ключевые слова
+      sample:
+        name:                   Имя в БД
+        title:                  Наименование
+        description:            Описание
+        price:                  Цена
+        quantity:               Количество
+        status:                 Статус

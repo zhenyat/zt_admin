@@ -1,0 +1,58 @@
+.container
+  .row
+    .col-md-6
+      = simple_form_for(@<%= singular_table_name %>) do |f|
+        /= f.error_notification
+        = errors_for(@<%= singular_table_name %>)
+
+        .form-inputs
+        <%- attributes.each do |attribute| -%>
+        <%- if attribute.reference? -%>
+          = f.association :<%= attribute.name %>, label_method: title
+        <%- else -%>
+        <%- if attribute.name == 'position' -%>
+          = f.input :position, as: :hidden
+        <%- else -%>
+          = f.input :<%= attribute.name %>
+        <%- end -%>
+        <%- end -%>
+        <%- end -%>
+
+        .form-inputs
+          = f.label t 'content'
+          = f.rich_text_area :content
+          .row
+            = f.label t 'images.cover_image'
+          .row
+            = f.file_field :cover_image
+          %br
+          .row
+            - if @<%= singular_table_name %>.cover_image.attached?
+              .col-md-3
+                = image_tag @<%= singular_table_name %>.cover_image.variant(resize_to_fit: [100, 100])
+              .col.-md-3
+                = f.check_box :remove_cover_image
+                %i.fas.fa-trash
+          %br           
+          .row
+            = f.label t 'images.gallery'
+          .row
+            = f.file_field :images, multiple: true
+          %br
+          .row
+            - if @<%= singular_table_name %>.images.attached?
+              - @<%= singular_table_name %>.images.each do |image|
+                .col-md-3
+                  = image_tag image.variant(resize_to_fit: [100, 100])
+                  = check_box_tag "image_to_remove_ids[]", image.id
+                  %i.fas.fa-trash
+
+        .form-actions
+          .row
+            .col-sm-3
+              = f.submit :class => "btn btn-primary btn-sm"
+            - unless @<%= singular_table_name %>.new_record?
+              .col-sm-3
+                = link_to t('actions.show'), @<%= singular_table_name %>,  class: 'btn btn-secondary btn-sm' unless @<%= singular_table_name %>.new_record?
+            .col-sm-3
+              = link_to t('actions.back'), <%= table_name %>_path, class: "btn btn-info btn-sm"

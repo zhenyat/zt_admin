@@ -6,8 +6,8 @@
 #
 #   16.01.2017  ZT
 #   26.12.2020  New options
-#   13.11.2021  uuid option
 #   12.12.2021  database option
+#   13.11.2021  uuid option
 ################################################################################
 require 'optparse'
 require 'optparse/time'
@@ -32,6 +32,7 @@ module ZtAdmin
         opts.banner  = "\nv.1 - for Rails 5 with Sprockets"
         opts.banner << "\nv.2 - for Rails 6 with Webpacker"
         opts.banner << "\nv.3 - API mode generation added"
+        opts.banner << "\nv.4 - for Rails 7 with ESBuild and Bootstrap"
         opts.banner << "\nCurrent version: #{VERSION}\n"
         opts.banner << "\nUsage:#{TAB*2}zt_admin {i | init}     - Gemfile to be updated for further `bundle install`"
         opts.banner << "\n#{TAB*5}zt_admin {c | clone}    - generic files to be added"

@@ -1,0 +1,17 @@
+<footer class="bg-dark p-2 text-dark bg-opacity-10">
+  <div class="container">
+    <hr>
+      <div class="row">
+        <div class="col-md-offset-1 col-md-6 vcenter">
+          <%= "#{app_name}" %>
+        </div>
+        <div class="col-md-5 vcenter">
+          <%= image_tag "logos/ZT_Lab.gif", size: "32x32"%>
+          <%= "© #{Time.now.year}" %>
+          <%= "#{t :site_design}" %>
+        </div>
+      </div>
+    </hr>
+    <%= render 'shared/debug' if ZT_DEBUG %>
+  </div>
+</footer>

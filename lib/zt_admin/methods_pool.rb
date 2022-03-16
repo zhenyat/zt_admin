@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ################################################################################
 # Library of methods to generate generic files and files for a Model
 #

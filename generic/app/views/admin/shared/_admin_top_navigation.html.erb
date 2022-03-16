@@ -1,0 +1,86 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-faded">
+  <div class="container-fluid">
+    <!-- Brand (App Home Page) -->
+    <div class="navbar-brand">
+      <%= link_to image_tag('logos/dummy_logo.png', title: app_name,  size: '142x82'), root_path %>
+    </div>
+    <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <div class="nav-link">
+            <%= link_to  admin_root_path do %>
+              <span aria-hidden="true" class="fas fa-tools fa-2x" style="color:navy"></span>
+              <%= t(:admin_home) %>
+            <% end %>
+          </div>
+        </li>
+        <li class="nav-item">
+          <% if @current_user.superadmin? %>
+            <div class="nav-link">
+              <%= link_to admin_users_path do %>
+                <span aria-hidden="true" class="fas fa-users fa-2x" style="color:navy"></span>
+                <%= t User.model_name.human(count: 2) %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="nav-link">
+              <%= link_to edit_admin_user_path(@current_user) do %>
+                <span aria-hidden="true" class="fas fa-user fa-2x" style="color:navy"></span>
+                <%= t(:profile) %>
+              <% end %>
+            </div>
+          <% end %>
+        </li>
+
+        <!-- Dropdown list -->
+        <li class="nav-item dropdown">
+          <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+            <span aria-hidden="true" class="fas fa-database fa-2x" style="color:navy"></span>
+            <%= t(:data) %>
+          </a>
+          <div aria-labelledby="navbarDropdown" class="dropdown-menu">
+            <div class="dropdown-item" >
+              <%#= link_to t(Company.model_name.human(count: 2)),  admin_items_path %>
+            </div>
+            <div class="dropdown-item" >
+              <%#= link_to t(Category.model_name.human(count: 2)),  admin_categories_path %>
+            </div>
+            <div class="dropdown-item">
+              <%#= link_to t(Partner.model_name.human(count: 2)), admin_partners_path %>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-item">
+              <%= link_to t(Sample.model_name.human(count: 2)), admin_samples_path %>
+            </div>
+            <div class="dropdown-item">
+              <%#= link_to t(:dummy), '#' %>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav">
+        <% if MULTILINGUAL %>
+          <li class="nav-item dropdown">
+            <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="navbarDropdown" role="button">
+              <span aria-hidden="true" class="fas fa-language fa-2x" style="color:navy"></span>
+              <%= t(:language) %>
+            </a>
+            <%= language_switch_bootstrap('admin') %>
+          </li>
+        <% end %>
+        <li class="nav-item">
+          <div class="nav-link">
+            <%= link_to(logout_path, method: 'delete') do %>
+              <span aria-hidden="true" class="fas fa-sign-out-alt fa-2x" style="color:navy"></span>
+              <%= t 'simple_form.submit.logout' %>
+            <% end %>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

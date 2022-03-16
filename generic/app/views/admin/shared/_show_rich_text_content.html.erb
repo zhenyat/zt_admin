@@ -1,0 +1,6 @@
+<% if object.class.name.constantize.reflect_on_association(:rich_text_content).present? %>
+  <%= t 'content' %>
+  <div class="content-area">
+    <%= object.content %>
+  </div>
+<% end %>

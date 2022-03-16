@@ -1,0 +1,12 @@
+<% entity = object.class.name.constantize %>
+<% if entity.column_names.include? 'ancestry' %>
+  <% if entity.respond_to? :active %>
+    <% if entity.column_names.include? 'title' %>
+      <%= f.input :ancestry, as: :select, collection: entity.active.map { |e| [e.title, e.id] } %>
+    <% else %>
+      <%= f.input :ancestry, as: :select, collection: entity.all#.active.map { |e| [e.name, e.id] } %>
+    <% end %>
+  <% else %>
+    <%= f.input :ancestry, as: :select, collection: entity.all #.all.map { |e| [e.title, e.id] } %>
+  <% end %>
+<% end %>

@@ -1,0 +1,48 @@
+en:
+  actions:
+    actions:        Actions
+    back:           To List
+    create:         Create
+    delete:         Delete
+    edit:           Edit
+    editing:        '%{model}: Editing'
+    new:            '%{model}: Creating'
+    save:           Save
+    show:           Show
+    view:           '%{model}'
+
+  entity:
+    object:         object
+    not_saved:      "can't be saved cause of errors:"
+
+  language:         English
+
+  messages:
+    created:        '%{model} was successfully created'
+    confirm:        'Are you sure?'
+    deleted:        '%{model} was successfully deleted'
+    updated:        '%{model} was successfully updated'
+    uploaded:       File was successfully uploaded
+    error_notification: 'Something went wrong'
+
+  status:
+    active:         Active
+    archived:       Archived
+    status:         Status
+
+ # Active Text & Storage
+  content:          Content
+  images:
+    cover_image:    Cover Image
+    gallery:        Gallery
+
+  # Gem 'ancestry'
+  tree:
+    parent:         Parent
+    parents:        Parents         
+    child:          Child
+    children:       Children
+    ancestry:       Ancestry
+    ancestries:     Ancestries
+    descendant:     Descendant
+    descendants:    Descendants

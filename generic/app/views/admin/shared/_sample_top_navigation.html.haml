@@ -1,0 +1,54 @@
+%nav.navbar.navbar-expand-lg.navbar-light.bg-faded
+  .container-fluid
+    / Brand (App Home Page)
+    .navbar-brand 
+      = link_to image_tag('logos/dummy_logo.png', title: app_name,  size: '142x82'), root_path
+
+    %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNav", "data-bs-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarNav.collapse.navbar-collapse
+      %ul.navbar-nav.me-auto
+        %li.nav-item
+          .nav-link
+            = link_to  admin_root_path do
+              %span.fas.fa-tools.fa-2x{"aria-hidden" => "true", "style" => "color:navy"}
+              = t(:admin_home)
+        %li.nav-item
+          - if @current_user.superadmin?
+            .nav-link
+              = link_to admin_users_path do
+                %span.fas.fa-users.fa-2x{"aria-hidden" => "true", "style" => "color:navy"}
+                = t User.model_name.human(count: 2)
+          - else
+            .nav-link
+              = link_to edit_admin_user_path(@current_user) do
+                %span.fas.fa-user.fa-2x{"aria-hidden" => "true", "style" => "color:navy"}
+                = t(:profile)
+
+        / Dropdown list
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+            %span.fas.fa-database.fa-2x{"aria-hidden" => "true", "style" =>  "color:navy"}
+            = t(:data)
+          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+            -# .dropdown-item
+              = link_to t(Category.model_name.human(count: 2)),  admin_categories_path
+            .dropdown-item
+              = link_to t(Sample.model_name.human(count: 2)), admin_samples_path
+            .dropdown-divider
+            .dropdown-item
+              = link_to t(:dummy), '#'
+
+      %ul.navbar-nav
+        - if MULTILINGUAL
+          %li.nav-item.dropdown
+            %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", :role => "button"}
+              %span.fas.fa-language.fa-2x{"aria-hidden" => "true", "style" => "color:navy"}
+              = t(:language)
+            = language_switch_bootstrap('admin')
+
+        %li.nav-item
+          .nav-link
+            = link_to(logout_path, method: 'delete') do
+              %span.fas.fa-sign-out-alt.fa-2x{"aria-hidden" => "true", "style" => "color:navy"}
+              = t 'simple_form.submit.logout'

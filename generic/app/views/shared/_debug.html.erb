@@ -1,0 +1,10 @@
+<div class="bg-success p-2 text-dark bg-opacity-10">
+  <%= debug params %>
+  <% unless @current_user.nil? %>
+    <%= debug "current_user: #{@current_user.full_name}; current_role: #{@current_user.role}" %>
+  <% end %>
+  <%= debug "Versions: #{RUBY_ENGINE}-#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL} | Rails: #{Rails.version}" %>
+  <% if GIT_BRANCH.present? %>
+    <%= debug "Git branch: #{GIT_BRANCH}; Commit: #{GIT_COMMIT} (#{l GIT_COMMIT_TIMESTAMP, format: '%d.%m.%Y %H:%M'})" %>
+  <% end %>
+</div>
