@@ -35,6 +35,6 @@ module Ground
     config.i18n.default_locale    = :en
     config.i18n.load_path        += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]  # YAML Multiple structure
 
-    config.active_storage.replace_on_assign_to_many = false
+    config.active_storage.replace_on_assign_to_many = true  # To be depricated in RoR 7.1
   end
 end

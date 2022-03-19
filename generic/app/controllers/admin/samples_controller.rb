@@ -4,6 +4,7 @@
 #   Demo controller for Admin with Active Storage
 #
 #   05.11.2020  ZT
+#   19.03.2022  Update for Rails 7
 ###########################################################
 class Admin::SamplesController < Admin::BaseController
   before_action :set_sample,    only: [:show, :edit, :update,:destroy]
@@ -30,20 +31,18 @@ class Admin::SamplesController < Admin::BaseController
     @sample = Sample.new(sample_params)
     authorize @sample
     if @sample.save
-      flash[:success] = t('messages.created', model: @sample.class.model_name.human)
-      redirect_to [:admin, @sample]
+      redirect_to admin_sample_path(@sample), notice: t('messages.created', model: @sample.class.model_name.human)
     else      
-      render :new
+      render :new, status: :unprocessable_entity 
     end
   end
 
   def update
     authorize @sample
     if @sample.update(sample_params)
-      flash[:success] = t('messages.updated', model: @sample.class.model_name.human)
-      redirect_to [:admin, @sample]
+      redirect_to admin_sample_path(@sample), notice: t('messages.updated', model: @sample.class.model_name.human)
     else      
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -73,6 +72,6 @@ class Admin::SamplesController < Admin::BaseController
   
     # Only allows a trusted parameter 'white list' through
     def sample_params
-      params.require(:sample).permit(:name, :title, :sku, :price, :description, :status, :content, :cover_image, :remove_cover_image, images: [])
+      params.require(:sample).permit(:name, :title, :quantity, :price, :status, :content, :cover_image, :remove_cover_image, images: [])
     end
 end
