@@ -194,7 +194,7 @@ module ZtAdmin
         $password_attribute = true      if pair.first == 'password'
       end
     else
-      puts colored(RED, "Файл миграции для модели #{$model} не найден")
+      puts colored(RED, "Migration filerr for #{$model} not found")
       exit
     end
   end

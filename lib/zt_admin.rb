@@ -48,11 +48,12 @@ module ZtAdmin
     require 'zt_admin/policy'         # Generate policy file
 
     create_views_path                 # Generate Admin Views for the Model
-    require 'zt_admin/view_index'     # View:     index
-    require 'zt_admin/view_show'      # View:     show
-    require 'zt_admin/view_new'       # View:     new
-    require 'zt_admin/view_edit'      # View:     edit
-    require 'zt_admin/view_form'      # Partial: _form
+    require 'zt_admin/views/erb/view_index'
+    require 'zt_admin/views/erb/view_show'
+    require 'zt_admin/views/erb/view_instance'
+    require 'zt_admin/views/erb/view_new'
+    require 'zt_admin/views/erb/view_edit'
+    require 'zt_admin/views/erb/view_form'
 
   else                                # Destroy Admin files and directories
     if $model == "User"

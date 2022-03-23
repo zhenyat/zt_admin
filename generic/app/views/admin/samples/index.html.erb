@@ -1,66 +1,33 @@
-<h1>
-  <%= t Sample.model_name.human(count: 2) %>
-</h1>
+<h1><%= t Sample.model_name.human(count: 2) %></h1>
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>
-        <%= Sample.human_attribute_name(:position) %>
-      </th>
-      <th>
-        <%= Sample.human_attribute_name(:name) %>
-      </th>
-      <th>
-        <%= Sample.human_attribute_name(:title) %>
-      </th>
-      <th>
-        <%= Sample.human_attribute_name(:price) %>
-      </th>
-      <th>
-        <%= Sample.human_attribute_name(:quantity) %>
-      </th>
-      <th>
-        <%= t 'status.status' %>
-      </th>
-      <th>
-        <%= t "images.cover_image" %>
-      </th>
-      <th>
-        <%= t 'actions.actions' %>
-      </th>
+      <th><%= Sample.human_attribute_name(:position) %></th>
+      <th><%= Sample.human_attribute_name(:name) %></th>
+      <th><%= Sample.human_attribute_name(:title) %></th>
+      <th><%= Sample.human_attribute_name(:price) %></th>
+      <th><%= Sample.human_attribute_name(:quantity) %></th>
+      <th><%= t 'status.status' %></th>
+      <th><%= t "images.cover_image" %></th>
+      <th><%= t 'actions.actions' %></th>
     </tr>
   </thead>
   <tbody>
     <% @samples.each do |sample| %>
       <tr>
-        <td>
-          <%= sample.position %>
-        </td>
-        <td>
-          <%= sample.name %>
-        </td>
-        <td>
-          <%= sample.title %>
-        </td>
-        <td>
-          <%= sample.price %>
-        </td>
-        <td>
-          <%= sample.quantity %>
-        </td>
-        <td>
-          <%= status_mark sample.status %>
-        </td>
+        <td><%= sample.position %></td>
+        <td><%= sample.name %></td>
+        <td><%= sample.title %></td>
+        <td><%= sample.price %></td>
+        <td><%= sample.quantity %></td>
+        <td><%= status_mark sample.status %></td>
+
         <% if sample.cover_image.attached? %>
-          <td>
-            <%= image_tag sample.cover_image.variant(resize_to_fit: [50, 50]) %>
-          </td>
+          <td><%= image_tag sample.cover_image.variant(resize_to_fit: [50, 50]) %></td>
         <% else %>
           <td></td>
         <% end %>
-        <td>
-          <%= render 'admin/shared/index_buttons', resource: sample %>
-        </td>
+        <td><%= render 'admin/shared/index_buttons', resource: sample %></td>
       </tr>
     <% end %>
   </tbody>

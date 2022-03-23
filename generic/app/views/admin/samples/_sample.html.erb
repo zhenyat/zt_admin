@@ -1,28 +1,16 @@
 <div class="container">
-  <h1>
-    <%= t Sample.model_name.human %>
-  </h1>
+  <h1><%= t Sample.model_name.human %></h1>
   <table class="table table-striped">
     <tbody>
       <% @sample.attributes.each do |key, value| %>
-        <% if key == 'id' || key.include?('digest') || key == 'created_at' || key == 'updated_at' %>
-          <!--  skip these attributes -->
-        <% else %>
+        <% if key != 'id' && !key.include?('digest') && key != 'created_at' && key != 'updated_at' %>
           <tr>
             <% if key == 'status' %>
-              <td>
-                <%= t 'status.status' %>
-              </td>
-              <td>
-                <%= status_mark @sample.status %>
-              </td>
+              <td><%= t 'status.status' %></td>
+              <td><%= status_mark @sample.status %></td>
             <% else %>
-              <td>
-                <%= t "activerecord.attributes.sample.#{key}" %>
-              </td>
-              <td>
-                <%= value %>
-              </td>
+              <td><%= t "activerecord.attributes.sample.#{key}" %></td>
+              <td><%= value %></td>
             <% end %>
           </tr>
         <% end %>

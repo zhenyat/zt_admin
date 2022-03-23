@@ -40,7 +40,7 @@ module ZtAdmin
     end
     
     File.open(file_out, "w") { |f| accepted_lines.each { |line| f.puts line } }
-    puts colored GREEN, "\File 'Gemfile' has been updated"
+    puts colored GREEN, "\nFile 'Gemfile' has been updated"
     
     puts colored(MAGENTA, "Run commands now:")
     puts colored(MAGENTA, "#{TAB*2}bundle update; gem cleanup; bundle install")

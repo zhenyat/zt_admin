@@ -102,8 +102,8 @@ module ZtAdmin
         # Batch procedures
         opts.separator ""
         opts.separator "Batch procedures:"
-        opts.separator "#{TAB*2}zt_batch.sh #{TAB*4}Applies gem 'zt_admin' to an App\n"
-        opts.separator "#{TAB*2}zt_update.sh#{TAB*4}Updates gem 'zt_admin' according to the last code change\n"
+        opts.separator "#{TAB*2}zt_batch.sh #{TAB*11}Applies gem 'zt_admin' to an App\n"
+        opts.separator "#{TAB*2}zt_update.sh | bin/zt_build.sh#{TAB*2}Updates gem 'zt_admin' according to the last code change\n"
       end
 
       opt_parser.parse!(args)
