@@ -26,5 +26,5 @@ begin
     puts "===== 'Sample' seeding skipped"
   end
 rescue
-  puts "----- Achtung! Something went wrong ('Sample' entity does not exist?)"
+  puts "----- Achtung! Something went wrong..."
 end

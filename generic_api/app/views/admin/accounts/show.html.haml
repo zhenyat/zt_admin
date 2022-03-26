@@ -1,0 +1,19 @@
+%h1= t Account.model_name.human
+%table.table.table-striped
+  %tbody
+    - @account.attributes.each do |key, value|
+      - if key == 'id' || key.include?('digest') || key == 'created_at' || key == 'updated_at'
+        //skip these attributes
+      -else
+        %tr
+          - if key == 'status'
+            %td= t 'status.status'
+            %td= status_mark @account.status
+          -else
+            %td= t "activerecord.attributes.account.#{key}"
+            %td= value
+
+.form_actions
+  .row
+    .col-md-2
+      = link_to t('actions.back'), admin_accounts_path, class: 'btn btn-primary btn-sm'

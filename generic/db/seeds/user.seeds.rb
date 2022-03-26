@@ -7,5 +7,5 @@ begin
     puts "===== 'User' seeding skipped"
   end
 rescue
-  puts "----- Achtung! Something went wrong ('User' entity does not exist?)"
+  puts "----- Achtung! Something went wrong..."
 end

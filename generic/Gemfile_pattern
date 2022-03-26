@@ -7,7 +7,7 @@
 #
 #   28.06.2015  ZT
 #   . . .
-#   15.03.2022  Ruby 3.1.1 / Rails 7.0.2.3
+#   23.03.2022  Ruby 3.1.1 / Rails 7.0.2.3
 #   
 #     rails new app --css bootstrap
 #
@@ -55,9 +55,9 @@ gem 'pundit'            # https://github.com/elabs/pundit
 gem 'countries'
 gem 'solargraph'
 
-# gem 'rack-cors'
-# gem 'devise'                       # https://github.com/plataformatec/devise
-# gem 'devise_token_auth', github:  'lynndylanhurley/devise_token_auth'
+gem 'rack-cors'
+gem 'devise'                       # https://github.com/plataformatec/devise
+gem 'devise_token_auth', github:  'lynndylanhurley/devise_token_auth'
 
 # crono for jobs
 # gem 'crono'

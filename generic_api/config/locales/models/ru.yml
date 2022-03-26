@@ -1,0 +1,36 @@
+ru:
+  activerecord:
+    models:
+      user:
+        one:                    Пользователь
+        other:                  Пользователи
+      account:
+        one:                    Аккаунт
+        other:                  Аккаунты
+      sample:
+        one:                    Образец
+        other:                  Образцы
+
+    attributes:
+      user:
+        role:                   Роль
+        last_name:              Фамилия
+        first_name:             Имя
+        email:                  Э/почта
+        password:               Пароль
+        password_confirmation:  Подтверждение пароля
+        status:                 Status
+      account:
+        email:                  Э/почта
+        name:                   Имя
+        nickname:               Псевдоним
+        password:               Пароль
+        password_confirmation:  Подтверждение пароля
+      sample:
+        name:                   Имя
+        title:                  Наименование
+        description:            Описание
+        price:                  Цена
+        quantity:               Количество
+        status:                 Статус
+

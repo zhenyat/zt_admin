@@ -1,0 +1,34 @@
+en:
+  activerecord:
+    models:
+      user:
+        one:                    User
+        other:                  Users
+      account:
+        one:                    Account
+        other:                  Accounts
+      sample:
+        one:                    Sample
+        other:                  Samples
+
+    attributes:
+      user:
+        role:                   Role
+        last_name:              Last Name
+        first_name:             First Name
+        email:                  Email
+        password:               Password
+        password_confirmation:  Password confirmation
+        status:                 Status
+      account:
+        email:                  Email
+        name:                   Name
+        nickname:               Nickname
+        password:               Password
+        password_confirmation:  Password confirmation
+      sample:
+        name:                   Name
+        title:                  Title
+        price:                  Price
+        quantity:               Quantity
+        status:                 Status

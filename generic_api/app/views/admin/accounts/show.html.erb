@@ -1,0 +1,26 @@
+<h1><%= t Account.model_name.human %></h1>
+<table class="table table-striped">
+  <tbody>
+    <% @account.attributes.each do |key, value| %>
+      <% if key != 'id' && !key.include?('digest') && key != 'created_at' && key != 'updated_at' %>
+          <tr>
+            <% if key == 'status' %>
+              <td><%= t 'status.status' %></td>
+              <td><%= status_mark @account.status %></td>
+            <% else %>
+              <td><%= t "activerecord.attributes.account.#{key}" %></td>
+              <td><%= value %></td>
+            <% end %>
+          </tr>
+        <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="form_actions">
+  <div class="row">
+    <div class="col-md-2">
+      <%= link_to t('actions.back'), admin_accounts_path, class: 'btn btn-primary btn-sm' %>
+    </div>
+  </div>
+</div>
