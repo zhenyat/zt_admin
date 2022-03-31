@@ -8,6 +8,7 @@
 #   26.12.2020  New options
 #   12.12.2021  database option
 #   13.11.2021  uuid option
+#   28.03.2022  polymorphic option
 ################################################################################
 require 'optparse'
 require 'optparse/time'
@@ -42,10 +43,11 @@ module ZtAdmin
         opts.banner << "\n#{TAB*5}zt_admin {d | destroy}  <model_name>"
         opts.banner << "\n\nExamples: zt_admin i --uuid\n#{TAB*5}zt_admin i --database mysql\n#{TAB*5}zt_admin c -u\n#{TAB*5}zt_admin a\n#{TAB*5}zt_admin g Product -e category -d\n#{TAB*5}zt_admin destroy Product"
         opts.banner << "\n#{TAB*5}zt_admin g Category -e status -a -c -i -p\n#{TAB*5}zt_admin d Category"
+        opts.banner << "\n#{TAB*5}zt_admin g Phone -e kind -e status --polymorphic"
         opts.separator ""
         opts.separator "Specific options:"
 
-        # Mandatory argument.
+        # Required arguments
         opts.on("-e", "--enum ENUMERATED ATTRIBUTE",
                 "Requires the Model enum attribute for input field in a view form") do |enum|
           options.enum << enum
@@ -67,6 +69,10 @@ module ZtAdmin
           $position = true
         end
 
+        opts.on("--polymorphic", "Sets Model as polymorphic") do
+          $polymorphic = true
+        end
+
         opts.separator ""
         opts.separator "Init / Clone options:"
 
@@ -75,7 +81,7 @@ module ZtAdmin
           $dbname = 'postgresql'
         end
 
-        opts.on("--database name", "Select a database: #{DATABASES_LIST}") do |dbname|
+        opts.on("--database name", "Selects a database: #{DATABASES_LIST}") do |dbname|
           $dbname = dbname
         end
 

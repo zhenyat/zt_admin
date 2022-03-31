@@ -8,6 +8,7 @@
 #   09.11.2016  BaseController & basepolymorphic_url
 #   21.01.2017  Flash & no polymorphic way
 #   19.03.2022  zt_admin v.4 (Rails 7)
+#   28.03.2022  polymorphic
 ################################################################################
 module ZtAdmin
   # admin directory
@@ -28,10 +29,11 @@ module ZtAdmin
 
   file.puts "class Admin::#{$model_plural}Controller < Admin::BaseController"
   file.puts "#{TAB}before_action :set_#{$name}, only: [:show, :edit, :update,:destroy]"
+  file.puts "#{TAB}before_action :set_#{$polymorphic_name}s"    if $polymorphic
   file.puts "#{TAB}after_action  :remove_images, only: :update" if $images
 
   file.puts "\n#{TAB}def index\n#{TAB*2}@#{$name_plural} = policy_scope(#{$model})\n#{TAB}end"
-#  file.puts "\n#{TAB}def index\n#{TAB*2}@#{$name_plural} = #{$model}.all\n#{TAB*2}authorize @#{$name_plural}\n#{TAB}end"
+# file.puts "\n#{TAB}def index\n#{TAB*2}@#{$name_plural} = #{$model}.all\n#{TAB*2}authorize @#{$name_plural}\n#{TAB}end"
 
   file.puts "\n#{TAB}def show\n#{TAB*2}authorize @#{$name}\n#{TAB}end"
 
@@ -60,6 +62,20 @@ module ZtAdmin
   file.puts "\n#{TAB*2}# Uses callbacks to share common setup or constraints between actions"
   file.puts "#{TAB*2}def set_#{$name}\n#{TAB*3}@#{$name} = #{$model}.find(params[:id])\n#{TAB*2}end"
 
+  if $polymorphic
+    file.puts "\n#{TAB*2}def set_#{$polymorphic_name}s"
+    file.puts "#{TAB*3}@#{$polymorphic_name}s = Bank.active + Company.active + Partner.active"
+    file.puts "#{TAB*3}@#{$polymorphic_name}_types_list = #{$model}.includes(:#{$polymorphic_name}).map(&:#{$polymorphic_name}_type).uniq.sort"
+
+    file.puts "#{TAB*3}# @#{$polymorphic_name}s_collection = ("
+    file.puts "#{TAB*3}#      Bank.all.map{|x| [x.name,    \"Bank:#\{x.id}\"]} +"
+    file.puts "#{TAB*3}#   Partner.all.map{|x| [x.name, \"Partner:#\{x.id}\"]} +"
+    file.puts "#{TAB*3}#   Company.all.map{|x| [x.name, \"Company:#\{x.id}\"]}"
+    file.puts "#{TAB*3}# ).sort"
+
+    file.puts "#{TAB*2}end"
+  end
+
   if $images
     file.puts "\n#{TAB*2}# Removes images, selected during Editing"
     file.puts "#{TAB*2}def remove_images"
@@ -75,15 +91,19 @@ module ZtAdmin
   line = "#{TAB*2}def #{$name}_params\n#{TAB*3}params.require(:#{$name}).permit("
   $attr_names.each do |attr_name|
     if $references_names.include? attr_name
-      line << ":#{attr_name}_id"                        # FK attribute
+      if $polymorphic
+        line << ":#{$polymorphic_name}_id, :#{$polymorphic_name}_type, :#{$polymorphic_name}_gid"
+      else
+        line << ":#{attr_name}_id"                      # FK attribute
+      end
     else
       line << ":#{attr_name}"                           # Ordinary attribute
     end
-    line << ", " unless attr_name == $attr_names.last    # While non-last attribute
+    line << ", " unless attr_name == $attr_names.last   # While non-last attribute
   end
 
   if $model == "User"
-    line << ",  :password, :password_confirmation"      # add password to the permission list
+    line << ",  :password, :password_confirmation"       # add password to the permission list
   end
 
   if $ancestry

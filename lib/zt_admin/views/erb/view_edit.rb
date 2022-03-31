@@ -16,9 +16,7 @@ module ZtAdmin
 
   file = File.open("#{$absolute_views_path}/edit.html.erb", 'w')
 
-  # file.puts '<h1>"#{' << "t('actions.editing', model: @#{$name}.class.model_name.human)" << '}" %></h1>'
-  file.puts '<h1><%= "#{t(\'actions.editing\', model: @category.class.model_name.human)}" %></h1>'
-
+  file.puts '<h1><%= "#{' << "t('actions.editing', model: @#{$name}.class.model_name.human)" << '}" %></h1>'
   file.puts "<%= render 'form' %>"
 
   file.close

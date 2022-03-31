@@ -22,7 +22,8 @@ module ZtAdmin
   class Error < StandardError; end
   
   options = OptparseCommand.parse(ARGV)
-  get_names options 
+  get_names options
+  
   
   if $mode == 'init'
     require 'zt_admin/init'     # Initial step

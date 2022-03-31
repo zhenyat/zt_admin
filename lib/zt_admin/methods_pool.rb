@@ -4,6 +4,7 @@
 #
 # 23.01.2017  ZT
 # 19.12.2020  Class name is added aka $klass
+# 28.03.2022  polymorphic name
 ################################################$################################
 require 'fileutils'
 
@@ -194,7 +195,7 @@ module ZtAdmin
         $password_attribute = true      if pair.first == 'password'
       end
     else
-      puts colored(RED, "Migration filerr for #{$model} not found")
+      puts colored(RED, "Migration file for #{$model} not found")
       exit
     end
   end
@@ -255,6 +256,9 @@ module ZtAdmin
 
       # Enumerated options
       $enum = options[:enum] if options[:enum].size > 0
+
+      # Polymorphic option
+      $polymorphic_name = $name + 'able' if $polymorphic
     end
   end
 end

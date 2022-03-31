@@ -7,6 +7,7 @@
 #   17.10.2020  Last update (AppName definition)
 #   12.12.2021  database option
 #   10.01.2022  test
+#   28.03.2022  polymorphic option
 ################################################################################
 
 # Constants
@@ -33,12 +34,14 @@ $password_attribute = nil
 $enum = []
 
 # Other options
-$ancestry = false
-$content  = false
-$dbname   = 'sqlite'
-$images   = false
-$position = false
-$uuid     = false
+$ancestry    = false
+$content     = false
+$dbname      = 'sqlite'
+$images      = false
+$position    = false
+$polymorphic = false
+$polymorphic_name = ''
+$uuid        = false
 
 # Debug flag
 $debug = false

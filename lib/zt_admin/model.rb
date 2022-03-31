@@ -30,7 +30,7 @@ module ZtAdmin
       file_out.puts "#{TAB}include ImagesHandleable"  if $images
       file_out.puts "#{TAB}include Heritable"         if $ancestry
       file_out.puts "#{TAB}has_ancestry"              if $ancestry
-      file_out.puts "#{TAB}has_rich_text :content"  if $content
+      file_out.puts "#{TAB}has_rich_text :content"    if $content
     else
       file_out.puts line    # Just copy an original line
     end
