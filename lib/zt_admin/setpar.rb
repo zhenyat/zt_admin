@@ -38,7 +38,9 @@ $ancestry    = false
 $content     = false
 $dbname      = 'sqlite'
 $images      = false
+$modelables  = []
 $position    = false
+
 $polymorphic = false
 $polymorphic_name = ''
 $uuid        = false

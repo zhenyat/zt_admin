@@ -88,7 +88,7 @@ module ZtAdmin
   end
 
   file.puts "\n#{TAB*2}# Only allows a trusted parameter 'white list' through"
-  line = "#{TAB*2}def #{$name}_params\n#{TAB*3}params.require(:#{$name}).permit("
+  line = "#{TAB*2}def #{$name}_params\n#{TAB*3}params.require(:#{$name}).permit(\n#{TAB*4}"
   $attr_names.each do |attr_name|
     if $references_names.include? attr_name
       if $polymorphic
@@ -99,7 +99,8 @@ module ZtAdmin
     else
       line << ":#{attr_name}"                           # Ordinary attribute
     end
-    line << ", " unless attr_name == $attr_names.last   # While non-last attribute
+    # While non-last attribute and no polymorphic associations
+    line << ", " unless attr_name == $attr_names.last && $modelables.empty?
   end
 
   if $model == "User"
@@ -117,10 +118,31 @@ module ZtAdmin
   if $images
     line << ", :cover_image, :remove_cover_image, images: []"
   end
+# s[/.*\(([^)]*)/,1]
+  if $modelables.present?
+    $modelables.each do |modelable|
+      permit_string = ''
+      assoc_controller = "app/controllers/admin/#{modelable.pluralize}_controller.rb"
+      File.readlines(assoc_controller).each { |line| permit_string = line if (line[/permit/])}
+      attributes_list = permit_string[/.*\(([^)]*)/,1]
 
-  line << ")\n#{TAB*2}end"
+      line << "\n#{TAB*4}#{modelable.pluralize}_attributes: ["
+      line << "\n#{TAB*5}#{attributes_list}"
+
+      if modelable == $modelables.last
+        line << "\n#{TAB*4}]"
+      else
+        line << "\n#{TAB*4}],"
+      end
+    end
+  end
+  line << "\n#{TAB*3})\n#{TAB*2}end"
   file.puts line
 
   file.puts "end"
   file.close
 end
+# addresses_attributes: [
+#   :id, :addressable_type, :addressable_id, :kind, :postal_code, :region, 
+#   :city, :street, :comment, :status
+# ],

@@ -246,10 +246,10 @@ module ZtAdmin
         end
         $name_plural = $name.pluralize
       else                              # Simple name (e.g. User)
-        $model  = ARGV[1].capitalize    # e.g.  City
-        $model_plural = $model.pluralize      # e.g.  Cities
-        $name   = $model.downcase       # e.g.  city
-        $name_plural  = $name.pluralize       # e.g.  cities
+        $model  = ARGV[1].capitalize        # e.g.  City
+        $model_plural = $model.pluralize    # e.g.  Cities
+        $name   = $model.downcase           # e.g.  city
+        $name_plural  = $name.pluralize     # e.g.  cities
       end
 
       # $KLASS = $model.constantize       # Class name
@@ -259,6 +259,9 @@ module ZtAdmin
 
       # Polymorphic option
       $polymorphic_name = $name + 'able' if $polymorphic
+
+      # Polymorphic Accociations option
+      $modelables = options[:modelables] if options[:modelables].size > 0
     end
   end
 end

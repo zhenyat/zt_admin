@@ -28,6 +28,7 @@ module ZtAdmin
       # We set default values here.
       options = OpenStruct.new
       options.enum = []
+      options.modelables = []
 
       opt_parser = OptionParser.new do |opts|
         opts.banner  = "\nv.1 - for Rails 5 with Sprockets"
@@ -37,13 +38,14 @@ module ZtAdmin
         opts.banner << "\nCurrent version: #{VERSION}\n"
         opts.banner << "\nUsage:#{TAB*2}zt_admin {i | init}     - Gemfile to be updated for further `bundle install`"
         opts.banner << "\n#{TAB*5}zt_admin {c | clone}    - generic files to be added"
-        opts.banner << "\n#{TAB*5}                          including:  MVC User; VC sessions; VC pages/home"
+        opts.banner << "\n#{TAB*5}                          including:  MVC User; VC sessions; VC pages"
         opts.banner << "\n#{TAB*5}zt_admin {a | api}      - API generic files to be added"
         opts.banner << "\n#{TAB*5}zt_admin {g | generate} <model_name> [options]"
         opts.banner << "\n#{TAB*5}zt_admin {d | destroy}  <model_name>"
         opts.banner << "\n\nExamples: zt_admin i --uuid\n#{TAB*5}zt_admin i --database mysql\n#{TAB*5}zt_admin c -u\n#{TAB*5}zt_admin a\n#{TAB*5}zt_admin g Product -e category -d\n#{TAB*5}zt_admin destroy Product"
         opts.banner << "\n#{TAB*5}zt_admin g Category -e status -a -c -i -p\n#{TAB*5}zt_admin d Category"
         opts.banner << "\n#{TAB*5}zt_admin g Phone -e kind -e status --polymorphic"
+        opts.banner << "\n#{TAB*5}zt_admin g Bank -e status -m address -m phone -m detail"
         opts.separator ""
         opts.separator "Specific options:"
 
@@ -63,6 +65,10 @@ module ZtAdmin
 
         opts.on("-i", "--images", "Sets permitted ActiveStorage images attributes") do
           $images = true
+        end
+
+        opts.on('-m', '--modelable model', Array, 'Selects polymorphic association') do |modelable|
+          options[:modelables] |= [*modelable]
         end
 
         opts.on("-p", "--position", "Sets 'position' attribute handling") do
