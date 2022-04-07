@@ -8,7 +8,7 @@
 #   09.11.2016  BaseController & basepolymorphic_url
 #   21.01.2017  Flash & no polymorphic way
 #   19.03.2022  zt_admin v.4 (Rails 7)
-#   28.03.2022  polymorphic
+#   03.04.2022  polymorphic & modelable
 ################################################################################
 module ZtAdmin
   # admin directory
@@ -37,7 +37,14 @@ module ZtAdmin
 
   file.puts "\n#{TAB}def show\n#{TAB*2}authorize @#{$name}\n#{TAB}end"
 
-  file.puts "\n#{TAB}def new\n#{TAB*2}@#{$name} = #{$model}.new\n#{TAB*2}authorize @#{$name}\n#{TAB}end"
+  file.puts "\n#{TAB}def new"
+  file.puts "#{TAB*2}@#{$name} = #{$model}.new"
+  if $modelables.present?
+    $modelables.each do |modelable|
+      file.puts "#{TAB*2}@#{$name}.#{modelable.pluralize}.build"
+    end
+  end
+  file.puts "#{TAB*2}authorize @#{$name}\n#{TAB}end"
 
   file.puts "\n#{TAB}def edit\n#{TAB*2}authorize @#{$name}\n#{TAB}end"
 
@@ -127,7 +134,7 @@ module ZtAdmin
       attributes_list = permit_string[/.*\(([^)]*)/,1]
 
       line << "\n#{TAB*4}#{modelable.pluralize}_attributes: ["
-      line << "\n#{TAB*5}#{attributes_list}"
+      line << "\n#{TAB*5}:id, #{attributes_list}"
 
       if modelable == $modelables.last
         line << "\n#{TAB*4}]"
@@ -142,7 +149,3 @@ module ZtAdmin
   file.puts "end"
   file.close
 end
-# addresses_attributes: [
-#   :id, :addressable_type, :addressable_id, :kind, :postal_code, :region, 
-#   :city, :street, :comment, :status
-# ],

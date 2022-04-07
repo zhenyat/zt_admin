@@ -4,7 +4,7 @@
 #
 #   Generates View file: admin/views/<model_name_plural>/index.html.erb
 #
-#   20.03.2022  ZT
+#   03.04.2022  ZT
 ################################################################################
 module ZtAdmin
   relative_path = "#{$relative_views_path}/index.html.erb"
@@ -36,17 +36,18 @@ module ZtAdmin
     else
       if attr_name == 'status'
         file.puts "#{TAB*4}<td><%= status_mark #{$name}.#{attr_name} %></td>"
+      elsif attr_name == 'cover_page'
+        file.puts "#{TAB*4}<% if #{$name}.cover_image.attached? %>"
+        file.puts "#{TAB*5}<td><%= image_tag #{$name}.cover_image.variant(resize_to_fit: [50, 50]) %></td>"
+        file.puts "#{TAB*4}<% else %>"
+        file.puts "#{TAB*5}<td></td>"
+        file.puts "#{TAB*4}<% end %>"
       else
         file.puts "#{TAB*4}<td><%= #{$name}.#{attr_name} %></td>" unless attr_name.include?('password') || attr_name.include?('remember')
       end
     end
   end
-  file.puts "#{TAB*4}<% if #{$name}.cover_image.attached? %>"
-  file.puts "#{TAB*5}<td><%= image_tag #{$name}.cover_image.variant(resize_to_fit: [50, 50]) %></td>"
-  file.puts "#{TAB*4}<% else %>"
-  file.puts "#{TAB*5}<td></td>"
-  file.puts "#{TAB*4}<% end %>"
-  
+
   file.puts "#{TAB*4}<td><%= render 'admin/shared/index_buttons', resource: #{$name} %></td>"
   file.puts "#{TAB*3}</tr>"
   file.puts "#{TAB*2}<% end %>"

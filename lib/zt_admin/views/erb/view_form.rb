@@ -30,7 +30,7 @@ module ZtAdmin
 
   # Input fields
   file.puts "\n#{TAB*4}<div class=\"form-inputs\">"
-  file.puts "#{TAB*5}<%#= render 'admin/shared/form_ancestry', f: f, object: @#{$name} %>"
+  file.puts "#{TAB*5}<%= render 'admin/shared/form_ancestry', f: f, object: @#{$name} %>" if $ancestry
 
   $attr_names.each_with_index do |attr_name|
     if attr_name.match 'password'
@@ -53,9 +53,15 @@ module ZtAdmin
   end
 
   # Rich Text & Images Input fields
-  file.puts "\n#{TAB*5}<%= render 'admin/shared/form_rich_text_content', f: f, object: @#{$name} %>"
+  file.puts "\n#{TAB*5}<%= render 'admin/shared/form_rich_text_content', f: f, object: @#{$name} %>" if $content
   file.puts "#{TAB*5}<%= render 'admin/shared/form_images', f: f, object: @#{$name} %>"
-  file.puts "#{TAB*5}<%= render 'admin/shared/form_actions', f: f, object: @#{$name} %>"
+
+  if $modelables.present?
+    $modelables.each do |modelable|
+      file.puts "#{TAB*5}<%= render 'admin/#{modelable.pluralize}/nested_form', f: f, object: @#{$name} %>"
+    end
+  end
+  file.puts "\n#{TAB*5}<%= render 'admin/shared/form_actions', f: f, object: @#{$name} %>"
 
   file.puts "#{TAB*4}</div>"
   file.puts "#{TAB*3}<% end %>"

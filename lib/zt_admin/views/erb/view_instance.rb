@@ -23,7 +23,7 @@ module ZtAdmin
   file.puts "#{TAB*7}<td><%= t \"activerecord.attributes.#{$name}" + '.#{key}" %></td>'
   file.puts "#{TAB*7}<td><%= value %></td>"
   file.puts "#{TAB*6}<% end %>"
-  file.puts "#{TAB*5}</tr>"
+  file.puts "#{TAB*5}</div>"
   file.puts "#{TAB*4}<% end %>"
   file.puts "#{TAB*3}<% end %>"
   file.puts "#{TAB*2}</tbody>"
@@ -31,6 +31,10 @@ module ZtAdmin
 
   file.puts "#{TAB}<%= render 'admin/shared/show_rich_text_content', object: @#{$name} %>"
   file.puts "#{TAB}<%= render 'admin/shared/show_images', object: @#{$name} %>"
-
+  if $modelables.present?
+    $modelables.each do |modelable|
+      file.puts "#{TAB}<%= render('admin/#{modelable.pluralize}/nested_show', #{modelable}: @#{$name}.#{modelable.pluralize}.first) if @#{$name}.#{modelable.pluralize}.present? %>"
+    end
+  end
   file.puts "</div>"
 end

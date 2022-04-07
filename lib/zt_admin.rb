@@ -8,6 +8,7 @@
 #   26.12.2020  gem 'ancestry'
 #   20.06.2021  Bootstrap 5 - jQuery + @popperjs/core (v.13.0.0)
 #   15.03.2022  ruby 3.1.1 / Rails 7.0.2.3
+#   07.03.2022  nested polymorphic associations
 ################################################################################
 # require_relative "zt_admin/version"
 require 'zt_admin/version'
@@ -55,6 +56,8 @@ module ZtAdmin
     require 'zt_admin/views/erb/view_new'
     require 'zt_admin/views/erb/view_edit'
     require 'zt_admin/views/erb/view_form'
+    require 'zt_admin/views/erb/view_nested_form' if $polymorphic
+    require 'zt_admin/views/erb/view_nested_show' if $polymorphic
 
   else                                # Destroy Admin files and directories
     if $model == "User"

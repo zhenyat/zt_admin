@@ -8,7 +8,7 @@
 #   26.12.2020  New options
 #   12.12.2021  database option
 #   13.11.2021  uuid option
-#   28.03.2022  polymorphic option
+#   03.04.2022  polymorphic & modelable options
 ################################################################################
 require 'optparse'
 require 'optparse/time'

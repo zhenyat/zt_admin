@@ -8,6 +8,7 @@
 #   06.07.2016  Copied for zt_admin
 #   02.08.2016  Updated for bootstrap
 #   03.08.2016  Bug fixed
+#   03.04.2022  Bug fixed
 ################################################################################
 module ZtAdmin
   relative_path = "#{$relative_views_path}/new.html.erb"
@@ -15,7 +16,7 @@ module ZtAdmin
 
   file = File.open("#{$absolute_views_path}/new.html.erb", 'w')
 
-  file.puts '<h1><%= "#{' << "t('actions.editing', model: @#{$name}.class.model_name.human)" << '}" %></h1>'
+  file.puts '<h1><%= "#{' << "t('actions.new', model: @#{$name}.class.model_name.human)" << '}" %></h1>'
   file.puts "<%= render 'form' %>"
   file.close
 end
