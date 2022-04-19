@@ -10,6 +10,7 @@ module ApplicationHelper
   # 16.10.2020  'module_parent_name' to be used since Rails 6.1
   # 27.10.2020  asset image files renamed
   # 23.06.2021  'language_switch_bootstrap' updated for Bootstrap 5 
+  # 12.02.2022  object locales corrected
   ##############################################################################
   def app_name
     Rails.application.class.module_parent_name
@@ -35,9 +36,36 @@ module ApplicationHelper
   end
 
   ##############################################################################
+  # Handles Error messages with Bootstrap 3 styles
+  # Source: http://stackoverflow.com/questions/15155890/styling-form-error-message-bootstrap-rails
+  #
+  # 18.07.2015  ZT
+  # 12.02.2022  object locales corrected
+  ##############################################################################
+  def errors_for(object)
+    if object.errors.any?
+      content_tag(:div, :class => "panel panel-danger") do
+        concat(content_tag(:div, :class => "panel-heading") do
+          concat(content_tag(:h4, :class => "panel-title") do
+            concat "#{t('entity.object')} '#{t(object.class.name.underscore)}' #{t('entity.not_saved')}"
+            # concat "Объект '#{t(object.class.name.underscore)}' не может быть сохранен из-за ошибок:"
+          end)
+        end)
+        concat(content_tag(:div, :class => "panel-body") do
+          concat(content_tag(:ul) do
+            object.errors.full_messages.each do |msg|
+                concat content_tag(:li, msg)
+            end
+          end)
+        end)
+      end
+    end
+  end
+
+  ##############################################################################
   # HTML element to switch language among available ones
   #
-  # Source:  http://dhampik.ru/blog/rails-routes-tricks-with-locales
+  # Source:  http://dhampik.ru/blog/rails-routes-tricks-with-s
   #
   # 17.11.2013  The `alternative version` in the source is used
   # 09.01.2017  Fixing error: Attempting to generate a URL from non-sanitized request parameters!
@@ -47,6 +75,27 @@ module ApplicationHelper
     content_tag(:ul, id: 'switch') do
       I18n.available_locales.each do |loc|
         locale_param = request.path == root_path ? root_path(locale: loc) : params.merge(locale: loc).permit!
+        concat content_tag(:li, (link_to I18n.t(:language, locale: loc), locale_param), class: (I18n.locale == loc ? "active" : ""))
+      end
+    end
+  end
+
+  ##############################################################################
+  # *language_switch* method updated for Bootstrap 4
+  #
+  # 08.12.2015  ZT
+  # 12.09.2016  updated for Admin (argument 'mode' added)
+  # 09.01.2017  Fixing error: Attempting to generate a URL from non-sanitized request parameters!
+  #             Solution: use *permit!* method:  params.merge(locale: loc).permit!
+  ##############################################################################
+  def language_switch_bootstrap4 mode
+    content_tag(:ul, class: 'dropdown-menu', id: 'switch') do
+      I18n.available_locales.each do |loc|
+        if mode == 'admin'
+          locale_param = request.path == admin_root_path ? admin_root_path(locale: loc) : params.merge(locale: loc).permit!
+        else
+          locale_param = request.path == root_path ? root_path(locale: loc) : params.merge(locale: loc).permit!
+        end
         concat content_tag(:li, (link_to I18n.t(:language, locale: loc), locale_param), class: (I18n.locale == loc ? "active" : ""))
       end
     end
@@ -70,14 +119,14 @@ module ApplicationHelper
           locale_param = request.path == root_path ? root_path(locale: loc) : params.merge(locale: loc).permit!
         end
         concat(content_tag(:div, class: "dropdown-item") do
-          concat content_tag(:div, (link_to I18n.t(:language, locale: loc), locale_param), class: (I18n.locale == loc ? "active" : ""))
+          concat content_tag(:div, (link_to I18n.t(:language, locale: loc), locale_param), class: (I18n. == loc ? "active" : ""))
         end)
       end
     end
   end
 
   ##############################################################################
-  # Returns a title on a per-page basis with localization
+  # Return a title on a per-page basis with localization
   # Source:  Michael Hartl
   #
   # 15.12.2013  Created

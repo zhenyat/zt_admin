@@ -18,7 +18,6 @@ module ZtAdmin
       puts colored(RED, "#{TAB}uuid is applied with PostgreSQL only!")
       exit
     end
-
     file_in = "#{generic}/Gemfile_pattern"
     file_out = "#{AppRoot}/Gemfile"
 
