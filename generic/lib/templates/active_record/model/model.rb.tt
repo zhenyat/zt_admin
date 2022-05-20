@@ -36,7 +36,8 @@
 <%- end -%>
 #
 #  <%= Date.today.strftime("%d.%m.%Y") %> ZT
-################################################################################<%- module_namespacing do -%>
+################################################################################
+<%- module_namespacing do -%>
 class <%= class_name %> < <%= parent_class_name.classify %>
 <%- attributes.select(&:reference?).each do |attribute| -%>
 <%- if attribute.name == 'parent' -%>
