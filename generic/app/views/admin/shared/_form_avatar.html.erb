@@ -1,0 +1,28 @@
+<% entity = object.class.name.constantize %>
+<% if entity.included_modules.include?(Avatarable) %>
+  <% if entity.reflect_on_attachment(:avatar).present? %>
+    <hr/>
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.label "Avatar" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.file_field :avatar %>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <% if object.avatar.attached? %>
+        <div class="col-md-2">
+          <%= image_tag object.avatar.variant(resize_to_fit: [100, 100]) %>
+        </div>
+        <div class="col-md-2">
+          <%= f.check_box :remove_avatar %>
+          <i class="fa-solid fa-trash" style="color:red"></i>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

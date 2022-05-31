@@ -44,7 +44,8 @@ module ZtAdmin
       
       file_out.puts "#{TAB}include Positionable"      if $position
       file_out.puts "#{TAB}include ImagesHandleable"  if $images
-      file_out.puts "#{TAB}include Heritable"         if $ancestry
+      file_out.puts "#{TAB}include Avatarable"        if $avatar
+      file_out.puts "#{TAB}include Heritable"         if $heritage
       file_out.puts "#{TAB}has_ancestry"              if $ancestry
       file_out.puts "#{TAB}has_rich_text :content"    if $content
     else

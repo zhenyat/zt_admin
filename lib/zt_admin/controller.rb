@@ -9,6 +9,7 @@
 #   21.01.2017  Flash & no polymorphic way
 #   19.03.2022  zt_admin v.4 (Rails 7)
 #   03.04.2022  polymorphic & modelable
+#   28.05.2022  avatar
 ################################################################################
 module ZtAdmin
   # admin directory
@@ -31,6 +32,7 @@ module ZtAdmin
   file.puts "#{TAB}before_action :set_#{$name}, only: [:show, :edit, :update,:destroy]"
   file.puts "#{TAB}before_action :set_#{$polymorphic_name}s"    if $polymorphic
   file.puts "#{TAB}after_action  :remove_images, only: :update" if $images
+  file.puts "#{TAB}after_action  :remove_avatar, only: :update" if $avatar
 
   file.puts "\n#{TAB}def index\n#{TAB*2}@#{$name_plural} = policy_scope(#{$model})\n#{TAB}end"
 # file.puts "\n#{TAB}def index\n#{TAB*2}@#{$name_plural} = #{$model}.all\n#{TAB*2}authorize @#{$name_plural}\n#{TAB}end"
@@ -68,6 +70,13 @@ module ZtAdmin
 
   file.puts "\n#{TAB*2}# Uses callbacks to share common setup or constraints between actions"
   file.puts "#{TAB*2}def set_#{$name}\n#{TAB*3}@#{$name} = #{$model}.find(params[:id])\n#{TAB*2}end"
+
+  if $avatar
+    file.puts "\n#{TAB*2}# Removes avatar, if selected during Editing"
+    file.puts "#{TAB*2}def remove_avatar"
+    file.puts "#{TAB*3}@#{$name}.avatar.purge if #{$name}_params[:remove_avatar] == '1'"
+    file.puts "#{TAB*2}end"
+  end
 
   if $polymorphic
     file.puts "\n#{TAB*2}def set_#{$polymorphic_name}s"
@@ -125,6 +134,9 @@ module ZtAdmin
   if $images
     line << ", :cover_image, :remove_cover_image, images: []"
   end
+
+  line << ", :avatar, :remove_avatar" if $avatar
+
 # s[/.*\(([^)]*)/,1]
   if $modelables.present?
     $modelables.each do |modelable|

@@ -9,6 +9,7 @@
 #   12.12.2021  database option
 #   13.11.2021  uuid option
 #   03.04.2022  polymorphic & modelable options
+#   28.05.2022  Avatarable option
 ################################################################################
 require 'optparse'
 require 'optparse/time'
@@ -42,7 +43,7 @@ module ZtAdmin
         opts.banner << "\n#{TAB*5}zt_admin {a | api}      - API generic files to be added"
         opts.banner << "\n#{TAB*5}zt_admin {g | generate} <model_name> [options]"
         opts.banner << "\n#{TAB*5}zt_admin {d | destroy}  <model_name>"
-        opts.banner << "\n\nExamples: zt_admin i --uuid\n#{TAB*5}zt_admin i --database mysql\n#{TAB*5}zt_admin c -u\n#{TAB*5}zt_admin a\n#{TAB*5}zt_admin g Product -e category -d\n#{TAB*5}zt_admin destroy Product"
+        opts.banner << "\n\nExamples: zt_admin i --uuid\n#{TAB*5}zt_admin i --database mysql\n#{TAB*5}zt_admin c -u\n#{TAB*5}zt_admin a\n#{TAB*5}zt_admin g Product -e category --avatar -d\n#{TAB*5}zt_admin destroy Product"
         opts.banner << "\n#{TAB*5}zt_admin g Category -e status -a -c -i -p\n#{TAB*5}zt_admin d Category"
         opts.banner << "\n#{TAB*5}zt_admin g Phone -e kind -e status --polymorphic"
         opts.banner << "\n#{TAB*5}zt_admin g Bank -e status -m address -m phone -m detail"
@@ -57,6 +58,10 @@ module ZtAdmin
 
         opts.on("-a", "--ancestry", "Sets permitted attribute 'ancestry'") do
           $ancestry = true
+        end
+
+        opts.on("--avatar", "Sets permitted ActiveStorage image 'avatar' attribute") do
+          $avatar = true
         end
 
         opts.on("-c", "--content", "Sets permitted ActiveText 'content' attribute") do

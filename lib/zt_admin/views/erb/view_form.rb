@@ -12,6 +12,7 @@
 #   19.12.2020  RichText & ActiveStorage Images fields are added
 #   25.12.2020  Ancestry
 #   22.03.2022  Rails 7
+#   29.05.2022  Avatar
 ################################################################################
 module ZtAdmin
   relative_path = "#{$relative_views_path}/_form.html.erb"
@@ -54,7 +55,8 @@ module ZtAdmin
 
   # Rich Text & Images Input fields
   file.puts "\n#{TAB*5}<%= render 'admin/shared/form_rich_text_content', f: f, object: @#{$name} %>" if $content
-  file.puts "#{TAB*5}<%= render 'admin/shared/form_images', f: f, object: @#{$name} %>"
+  file.puts "#{TAB*5}<%= render 'admin/shared/form_images', f: f, object: @#{$name} %>"   if $images 
+  file.puts "#{TAB*5}<%= render 'admin/shared/form_avatar', f: f, object: @#{$name} %>"   if $avatar 
 
   if $modelables.present?
     $modelables.each do |modelable|
