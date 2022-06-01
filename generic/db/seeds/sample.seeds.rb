@@ -25,6 +25,7 @@ begin
   else
     puts "===== 'Sample' seeding skipped"
   end
-rescue
+rescue StandardError, AnotherError => e
   puts "----- Achtung! Something went wrong..."
+  puts "#{e.inspect}"
 end
