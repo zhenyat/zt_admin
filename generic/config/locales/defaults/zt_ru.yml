@@ -9,3 +9,5 @@ ru:
       short_date:     '%-d.%m.%Y'
       short_datetime: '%-d.%m.%Y г. %H:%M'
       short_time:     '%H:%M'
+  hello_world:        Привет, мир!
+  
