@@ -164,6 +164,9 @@ module ZtAdmin
     action_report "app/models/sample.rb"
     FileUtils.cp "#{models}/sample.rb", "#{AppRoot}/app/models"
 
+    action_report "app/models/concerns/avatarable.rb"
+    FileUtils.cp "#{models}/concerns/avatarable.rb", "#{AppRoot}/app/models/concerns"
+
     action_report "app/models/concerns/images_handleable.rb"
     FileUtils.cp "#{models}/concerns/images_handleable.rb", "#{AppRoot}/app/models/concerns"
 

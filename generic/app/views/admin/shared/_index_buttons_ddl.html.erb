@@ -1,0 +1,11 @@
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true">
+    <%= t('actions.actions') %>
+  </button>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <%= link_to t('actions.show'), [:admin, resource], class: 'btn btn-info btn-sm w-100' %>
+    <%= link_to t('actions.edit'), [:edit, :admin, resource], class: 'btn btn-warning btn-sm w-100' %>
+    <%= link_to t('actions.delete'), [:admin, resource], data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-danger btn-sm w-100' %>
+  </div>
+</div>
