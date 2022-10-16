@@ -223,18 +223,22 @@ module ZtAdmin
     FileUtils.cp "#{helpers}/sessions_helper.rb", "#{AppRoot}/app/helpers"
 
     ### Get generic files in the *javascript* directory
-    # action_report "app/javascript"
+    action_report "app/javascript"
 
-    # action_report "app/javascript/packs/application.js"
-    # if ZtAdmin::VERSION[0..3] == '3.12'
-    #   FileUtils.cp "#{javascript}/packs/application.B4.js", "#{AppRoot}/app/javascript/packs/application.js"
-    # else
-    #   FileUtils.cp "#{javascript}/packs/application.js", "#{AppRoot}/app/javascript/packs"
-    # end
-
-    # action_report "app/javascript/stylesheets"
-    # FileUtils.cp_r "#{javascript}/stylesheets", "#{AppRoot}/app/javascript/"
-
+    if ZtAdmin::VERSION[0..3] >= '4'
+      action_report "app/javascript/application.js"
+      FileUtils.cp "#{javascript}/application.js", "#{AppRoot}/app/javascript"
+    else
+      action_report "app/javascript/packs/application.js"
+      if ZtAdmin::VERSION[0..3] == '3.12'
+        FileUtils.cp "#{javascript}/packs/application.B4.js", "#{AppRoot}/app/javascript/packs/application.js"
+      else
+        FileUtils.cp "#{javascript}/packs/application.js", "#{AppRoot}/app/javascript/packs"
+      end
+      action_report "app/javascript/stylesheets"
+      FileUtils.cp_r "#{javascript}/stylesheets", "#{AppRoot}/app/javascript/"
+    end
+    
     ### Get generic files in the *policies* directory
     action_report "app/policies"
 

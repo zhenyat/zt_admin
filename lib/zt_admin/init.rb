@@ -43,7 +43,7 @@ module ZtAdmin
     
     puts colored(MAGENTA, "Run commands now:")
     puts colored(MAGENTA, "#{TAB*2}bundle update; gem cleanup; bundle install")
-    # puts colored(MAGENTA, "#{TAB*2}yarn add @fortawesome/fontawesome-free")
+    puts colored(MAGENTA, "#{TAB*2}yarn add @fortawesome/fontawesome-free")
     # puts colored(MAGENTA, "#{TAB*2}yarn add @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons ")
     # puts colored(MAGENTA, "#{TAB*2}yarn add @fortawesome/free-brands-svg-icons @fortawesome/react-fontawesome")
     # puts colored(MAGENTA, "#{TAB*2}ps aux | grep spring | grep -v 'grep' | awk '{print $2}' | xargs kill")

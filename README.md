@@ -8,7 +8,7 @@ Gem to generate Admin Scope files for RoR 6 App via CLI
 1.x   Rails 5 with Sprockets
 2.x:  Ruby 2.7.x / Rails 6 with Webpacker
 3.x:  API generation mode is added
-4.x:  Ruby  3.1.1 / Rails 7.0.2.3
+4.x:  Ruby  > 3.1.1 / Rails > 7.0.2.3
 ```
 
 ## Functionality
@@ -41,8 +41,9 @@ rm zt_admin*.gem; git add .; gem build zt_admin.gemspec; gem install --local zt_
 ### Uninstall gem
 
 ```bash
-gem uninstall -i /Users/zhenya/.gem/ruby/3.0.0 zt_admin
+gem uninstall -i /usr/local/lib/ruby/gems/3.1.0 zt_admin
 ```
+<!-- gem uninstall -i /Users/zhenya/.gem/ruby/3.0.0 zt_admin -->
 
 ## Usage
 
