@@ -296,7 +296,7 @@ module ZtAdmin
     end
 
     puts colored(RED, "\n#{TAB}Workaround: remove default version of gem 'psych'!")
-    puts colored(RED, "{TAB*2}e.g.:  rm ~/.rubies/ruby-3.2.2/lib/ruby/gems/3.2.0/specifications/default/psych-5.0.1.gemspec")
+    puts colored(RED, "#{TAB*2}e.g.:  rm ~/.rubies/ruby-3.2.2/lib/ruby/gems/3.2.0/specifications/default/psych-5.0.1.gemspec")
     puts colored(MAGENTA, "\n#{TAB}Run commands now (to create db table 'users' & 'samples):")
     puts colored(MAGENTA, "#{TAB*2}bin/rails db:create")
     puts colored(MAGENTA, "#{TAB*2}bin/rails action_text:install")

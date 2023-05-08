@@ -41,7 +41,7 @@ rm zt_admin*.gem; git add .; gem build zt_admin.gemspec; gem install --local zt_
 ### Uninstall gem
 
 ```bash
-gem uninstall -i /usr/local/lib/ruby/gems/3.1.0 zt_admin
+gem uninstall -i /usr/local/lib/ruby/gems/3.2.0 zt_admin
 ```
 <!-- gem uninstall -i /Users/zhenya/.gem/ruby/3.0.0 zt_admin -->
 
