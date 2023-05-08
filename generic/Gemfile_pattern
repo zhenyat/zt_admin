@@ -10,6 +10,8 @@
 #   23.03.2022  Ruby 3.1.1 / Rails 7.0.2.3
 #   19.04.2022  Ruby 3.1.2
 #   20.05.2022	Rails 7.0.3
+#   08.05.2022	Ruby 3.2.2 / Rails 7.0.4
+#               Workaround: psych < 4
 #   
 #     rails new app --css bootstrap
 #
@@ -19,8 +21,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.2"
-gem "rails", "~> 7.0.3" # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+ruby "3.2.2"
+gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 
 gem "sprockets-rails"   # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "puma"              # Use the Puma web server [https://github.com/puma/puma]
@@ -29,6 +31,8 @@ gem "cssbundling-rails" # Bundle and process CSS [https://github.com/rails/cssbu
 gem "turbo-rails"       # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "stimulus-rails"    # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "jbuilder"          # Build JSON APIs with ease [https://github.com/rails/jbuilder]
+
+gem 'psych', '< 4'      # Workaround
 
 # gem "redis", "~> 4.0" # Use Redis adapter to run Action Cable in production
 # gem "kredis"          # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]

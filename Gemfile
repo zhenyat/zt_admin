@@ -7,12 +7,13 @@
 #
 #   19.02.2022  ZT
 #   19.04.2022  Ruby 3.1.2
+#   08.05.2023  Ruby 3.2.2 / Rails 7.0.4.3
 #####################################################################
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.2"
-gem "rails", "~> 7.0.2", ">= 7.0.2.3"
+ruby "3.2.2"
+gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 
 gem "sprockets-rails"   # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "puma"              # Use the Puma web server [https://github.com/puma/puma]

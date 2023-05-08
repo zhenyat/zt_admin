@@ -56,7 +56,7 @@ module ZtAdmin
     fout.close
     action_report "config/application.rb"
 
-    unless File.exists? "#{AppRoot}/config/routes_original.rb"
+    unless File.exist? "#{AppRoot}/config/routes_original.rb"
       action_report "config/routes_original.rb"
       FileUtils.mv "#{AppRoot}/config/routes.rb", "#{AppRoot}/config/routes_original.rb"
     end
@@ -290,11 +290,13 @@ module ZtAdmin
     FileUtils.cp_r "#{views}/admin", "#{AppRoot}/app/views/"
 
     ### Get generic files in the *test* directory
-    if Dir.exists?  "#{AppRoot}/test"
+    if Dir.exist?  "#{AppRoot}/test"
       action_report "test/test_helper.rb"
       FileUtils.cp "#{test}/test_helper.rb", "#{AppRoot}/test/test_helper.rb"
     end
 
+    puts colored(RED, "\n#{TAB}Workaround: remove default version of gem 'psych'!")
+    puts colored(RED, "{TAB*2}e.g.:  rm ~/.rubies/ruby-3.2.2/lib/ruby/gems/3.2.0/specifications/default/psych-5.0.1.gemspec")
     puts colored(MAGENTA, "\n#{TAB}Run commands now (to create db table 'users' & 'samples):")
     puts colored(MAGENTA, "#{TAB*2}bin/rails db:create")
     puts colored(MAGENTA, "#{TAB*2}bin/rails action_text:install")

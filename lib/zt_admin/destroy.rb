@@ -75,7 +75,7 @@ module ZtAdmin
     # action_report"#{relative_path}"
 
     view_admin_path = "#{AppRoot}/#{view_relative_path}"
-    if File.exists?(view_admin_path) && Dir.glob("#{view_admin_path}/*").empty?
+    if File.exist?(view_admin_path) && Dir.glob("#{view_admin_path}/*").empty?
       Dir.rmdir view_admin_path
       puts colored(RED,  "#{TAB}remove     ") + "#{relative_path}"
       # action_report "#{relative_path}"

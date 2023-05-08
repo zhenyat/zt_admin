@@ -4,7 +4,7 @@
 # ZT_CONFIG = YAML.load_file("#{Rails.root}/config/zt_config.yml")
 # puts ZT_CONFIG['zt_initializer']
 #   or Sample 2:
-# if File.exists?(File.expand_path('../application.yml', __FILE__))
+# if File.exist?(File.expand_path('../application.yml', __FILE__))
 #   config = YAML.load(File.read(File.expand_path('../application.yml', __FILE__)))
 #   config.merge! config.fetch(Rails.env, {})
 #   config.each do |key, value|

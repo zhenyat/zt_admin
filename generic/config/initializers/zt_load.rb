@@ -11,12 +11,12 @@
 
 # Gets default App configuration parameters
 filename = 'config/zt_config/default_config.yml'
-if File.exists? "#{Rails.root}/#{filename}"
+if File.exist? "#{Rails.root}/#{filename}"
   ZT_CONFIG = YAML.load_file("#{Rails.root}/#{filename}")[Rails.env]
 
   # Updates default configuration parameters for the current Application Run
   filename = 'config/zt_config/run_config.yml'
-  if File.exists? "#{Rails.root}/#{filename}"
+  if File.exist? "#{Rails.root}/#{filename}"
     run_config = YAML.load_file("#{Rails.root}/#{filename}")
     ZT_CONFIG.deep_merge! run_config if run_config.present?  # File contains values
   end
@@ -24,12 +24,12 @@ end
 
 # Sets Constants and Parameters for the App run
 filename = 'config/zt_config/settings.rb'
-if File.exists? "#{Rails.root}/#{filename}"
+if File.exist? "#{Rails.root}/#{filename}"
   eval File.read("#{Rails.root}/#{filename}")
 end
 
 # Gets Russian Regions as array ZT_RUSSIAN_REGIONS[]
 filename = 'config/zt_config/russian_regions.yml'
-if File.exists? "#{Rails.root}/#{filename}"
+if File.exist? "#{Rails.root}/#{filename}"
   ZT_RUSSIAN_REGIONS = YAML.load_file("#{Rails.root}/#{filename}")
 end

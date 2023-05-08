@@ -20,7 +20,7 @@ module ZtAdmin
     action_report "config"
 
     # File: config/routes.rb: with API
-    unless File.exists? "#{AppRoot}/config/routes_backup.rb"
+    unless File.exist? "#{AppRoot}/config/routes_backup.rb"
       action_report "config/routes_backup.rb"
       FileUtils.mv "#{AppRoot}/config/routes.rb", "#{AppRoot}/config/routes_backup.rb"
     end
