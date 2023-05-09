@@ -20,8 +20,12 @@
 #   12.11.2020  Images handling shifted to Concerns
 #   15.11.2020  Corrected
 #   20.12.2020  Position added
+#   09.05.2023  Default attributes' values
 ###########################################################
 class Sample < ApplicationRecord
+  attribute :price,    :decimal, default: 0.0
+  attribute :quantity, :integer, default: 0
+
   include Positionable
   include ImagesHandleable
   has_rich_text :content
