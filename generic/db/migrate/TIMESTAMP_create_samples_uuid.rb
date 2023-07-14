@@ -10,5 +10,7 @@ class CreateSamples < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_check_constraint :samples, "price >= 0",    name: "price_non_negative"
+    add_check_constraint :samples, "quantity >= 0", name: "quantity_non_negative"
   end
 end
