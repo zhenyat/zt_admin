@@ -170,7 +170,7 @@ module ZtAdmin
 
       # Collect attributes parsing lines of a migration file
       lines.each do |line|
-        if line.match("t.") && !line.match("t.timestamps") && !line.match("create_table") && !line.match("class") && !line.match("add_index") &&!line.match("add_foreign_key")
+        if line.match("t.") && !line.match("t.timestamps") && !line.match("create_table") && !line.match("class") && !line.match("add_index") && !line.match("add_foreign_key") && !line.match("add_check_constraint")
 
           # remove non-attribute text
           if line.match(",")            # aka:  t.boolean :stock, default: true
